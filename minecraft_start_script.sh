@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 function sigterm_handler() {
     echo "SIGTERM handler triggered"
+    rconc 127.0.0.1:25575 "say Server stopping..."
+    sleep 1
     rconc 127.0.0.1:25575 "stop"
     echo "Waiting for minecraft to stop..."
     while kill -0 "$(cat /tmp/minecraft.pid)" &>/dev/null; do
